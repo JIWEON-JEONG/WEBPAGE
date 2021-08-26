@@ -1,32 +1,38 @@
 import React, { useEffect } from "react";
-import Button from "../button/button";
+import { useHistory } from "react-router-dom";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import axios from "axios";
-import { useRef } from "react";
 
-const Login = () => {
-  const eRef = useRef();
-  const pwRef = useRef();
-
-  const onLogin = (event) => {
-    event.preventDefault();
-    const id = eRef.current.value;
-    const pw = pwRef.current.value;
-    axios //
-      .post("/", { id: { id }, pw: { pw } })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+const Login = ({ authService }) => {
+  const history = useHistory();
+  const goToMaker = (userId) => {
+    history.push({
+      pathname: "/main",
+      state: { id: userId },
+    });
   };
+  const onLogin = (event) => {
+    authService //
+      .login(event.currentTarget.textContent)
+      .then((data) => goToMaker(data.user.uid));
+  };
+  useEffect(() => {
+    authService.onAuthChange((user) => {
+      user && goToMaker(user.uid);
+    });
+  });
   return (
     <section>
       <Header></Header>
       <h1>Login</h1>
-      <form>
-        <input ref={eRef} type="email" placeholder="email..."></input>
-        <input ref={pwRef} type="password" placeholder="password..."></input>
-        <Button name="login" onClick={onLogin}></Button>
-      </form>
+      <ul>
+        <li>
+          <button onClick={onLogin}>Google</button>
+        </li>
+        <li>
+          <button onClick={onLogin}>Github</button>
+        </li>
+      </ul>
       <Footer></Footer>
     </section>
   );
