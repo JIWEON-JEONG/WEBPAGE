@@ -1,20 +1,14 @@
 import React from "react";
 
-const PreviewCard = ({ card, time }) => {
-  const DEFAULT_IMG = "./images/logo.png";
-  const { id, name, company, message, title, email, filename, fileURL } = card;
-  const url = fileURL || DEFAULT_IMG;
-  return (
-    <li>
-      <img src={url} />
-      <div>
-        <p>{time}</p>
-        <h1>{name}</h1>
+const PreviewCard = ({ card }) => {
+  const { id, time, title } = card;
 
-        <p>{title}</p>
-        <p>{message}</p>
-      </div>
-    </li>
+  return (
+    <ul>
+      <h1>{id}</h1>
+      <span>{time}</span>
+      <p>{title}</p>
+    </ul>
   );
 };
 

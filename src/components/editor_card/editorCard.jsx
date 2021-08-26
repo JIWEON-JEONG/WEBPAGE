@@ -1,28 +1,27 @@
 import React, { useRef } from "react";
 import ImageFileInput from "../image_file_input/image_file_input";
 import Button from "../button/button";
-const EditorCard = ({ card, onDelete, time }) => {
-  const nameRef = useRef();
-  const themeRef = useRef();
+const EditorCard = ({ card, onDelete }) => {
   const titleRef = useRef();
-  const messageRef = useRef();
-  const { id, name, title, email, context, theme, fileName, fileURL } = card;
+  const themeRef = useRef();
+  const imageRef = useRef();
+  const contextRef = useRef();
+  const { id, time, title, theme, context } = card;
   const handleDelete = (event) => {
     event.preventDefault();
-    onDelete(event.target.form.email.value);
+    onDelete(event.target.form.id.value);
   };
   return (
     <form>
+      <input type="text" value={id}></input>
       <input type="text" value={time} />
-      <input ref={nameRef} type="text" name="name" value={name} />
+      <input ref={titleRef} type="text" name="title" value={title} />
       <select ref={themeRef} name="theme" value={theme}>
         <option value="자유게시판">자유게시판</option>
         <option value="알쓸신잡">알쓸신잡</option>
         <option value="요리정보">요리정보</option>
       </select>
-      <input ref={titleRef} type="text" name="title" value={title} />
-      <input type="text" name="email" value={email} />
-      <textarea ref={messageRef} name="message" value={context} />
+      <textarea ref={contextRef} name="context" value={context} />
       <div>
         <ImageFileInput />
       </div>

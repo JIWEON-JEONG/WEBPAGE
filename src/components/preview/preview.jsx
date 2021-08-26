@@ -1,10 +1,10 @@
 import React from "react";
 import PreviewCard from "../preview_card/previewCard";
 
-const Preview = ({ card, time }) => (
+const Preview = ({ card }) => (
   <section>
     {card.map((card) => (
-      <PreviewCard card={card} time={time} />
+      <PreviewCard card={card} />
     ))}
   </section>
 );
