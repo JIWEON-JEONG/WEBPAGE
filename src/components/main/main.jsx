@@ -5,25 +5,15 @@ import { useHistory } from "react-router-dom";
 
 import Button from "../button/button";
 
-const Main = ({ authService }) => {
+const Main = () => {
   const history = useHistory();
-  const onLogout = () => {
-    authService.logout();
-  };
-  useEffect(() => {
-    authService.onAuthChange((user) => {
-      if (!user) {
-        history.push("/");
-      }
-    });
-  });
 
   const goBoard = () => {
     history.push("/main/board");
   };
   return (
     <section>
-      <Header onLogout={onLogout}></Header>
+      <Header></Header>
       <Button name="Board" onClick={goBoard}></Button>
       <Footer></Footer>
     </section>

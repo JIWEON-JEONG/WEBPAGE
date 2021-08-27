@@ -9,7 +9,7 @@ import Board from "./components/board/board";
 import Welcome from "./components/welcome/welcome";
 import Signup from "./components/signup/signup";
 
-function App({ authService }) {
+function App() {
   const [card, setCard] = useState([
     {
       id: "1",
@@ -34,29 +34,28 @@ function App({ authService }) {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Welcome authService={authService}></Welcome>
+          <Welcome></Welcome>
         </Route>
         <Route exact path="/signup">
-          <Signup authService={authService}></Signup>
+          <Signup></Signup>
         </Route>
         <Route exact path="/login">
-          <Login authService={authService}></Login>
+          <Login></Login>
         </Route>
         <Route exact path="/main">
-          <Main authService={authService}></Main>
+          <Main></Main>
         </Route>
         <Route exact path="/main/board">
-          <Board card={card} authService={authService}></Board>
+          <Board card={card}></Board>
         </Route>
         <Route path="/main/board/view">
-          <BoardView card={card} authService={authService}></BoardView>
+          <BoardView card={card}></BoardView>
         </Route>
         <Route exact path="/main/board/new">
           <BoardEditor
             onDelete={onDelete}
             onAdd={onAdd}
             card={card}
-            authService={authService}
           ></BoardEditor>
         </Route>
       </Switch>

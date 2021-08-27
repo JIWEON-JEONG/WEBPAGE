@@ -14,7 +14,7 @@ const Login = () => {
     const id = eRef.current.value;
     const pw = pwRef.current.value;
     axios //
-      .post("/", { id: { id }, pw: { pw } })
+      .post("/login", { id: { id }, pw: { pw } })
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   };

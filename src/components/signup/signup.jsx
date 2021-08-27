@@ -19,6 +19,7 @@ const Signup = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    const formdata = new FormData();
     const email = emailRef.current.value;
     const pw = pwRef.current.value;
     const name = nameRef.current.value;
@@ -26,18 +27,20 @@ const Signup = () => {
     const auth = authRef.current.value;
     const add = addRef.current.value;
     const kakaoAdd = kakaoAddRef.current.value;
-    const image = file;
-    console.log(image);
+    formdata.append("image", file);
+    formdata.append("id", email);
+    formdata.append("pw", pw);
+    formdata.append("name", name);
+    formdata.append("phonenumber", ph);
+    formdata.append("auth", auth);
+    formdata.append("address", add);
+    formdata.append("openKakaoAddress", kakaoAdd);
+    console.log(formdata);
     axios //
-      .post("/", {
-        id: { email },
-        pw: { pw },
-        name: { name },
-        phonenumber: { ph },
-        auth: { auth },
-        address: { add },
-        openKakaoAddress: { kakaoAdd },
-        file: { image },
+      .post("/", formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
