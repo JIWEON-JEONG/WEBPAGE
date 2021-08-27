@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import ImageFileInput from "../image_file_input/image_file_input";
 import Button from "../button/button";
-import styles from "../editor_card/editorcard.module.css";
 const EditorCard = ({ card, onDelete }) => {
   const titleRef = useRef();
   const themeRef = useRef();
+  const imageRef = useRef();
   const contextRef = useRef();
   const { id, time, title, theme, context } = card;
   const handleDelete = (event) => {
@@ -12,7 +12,7 @@ const EditorCard = ({ card, onDelete }) => {
     onDelete(event.target.form.id.value);
   };
   return (
-    <form className={styles.edit}>
+    <form>
       <input type="text" value={id}></input>
       <input type="text" value={time} />
       <input ref={titleRef} type="text" name="title" value={title} />

@@ -1,10 +1,8 @@
 import React, { useRef } from "react";
-import { useHistory } from "react-router-dom";
 import Button from "../button/button";
 import ImageFileInput from "../image_file_input/image_file_input";
 
 const AddForm = ({ onAdd }) => {
-  const history = useHistory();
   const idRef = useRef();
   const themeRef = useRef();
   const titleRef = useRef();
@@ -24,7 +22,6 @@ const AddForm = ({ onAdd }) => {
     };
     formRef.current.reset();
     onAdd(cards);
-    history.push("/main/board");
   };
   return (
     <form ref={formRef}>
