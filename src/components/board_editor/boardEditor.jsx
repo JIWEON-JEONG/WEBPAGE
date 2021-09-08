@@ -1,13 +1,13 @@
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import React, { useEffect, useState } from "react";
-import Editor from "../editor/editor";
+import React from "react";
+import AddForm from "../addForm/addForm";
 
-const BoardEditor = ({ card, onAdd, onDelete }) => {
+const BoardEditor = () => {
   return (
     <section>
       <Header></Header>
-      <Editor card={card} onAdd={onAdd} onDelete={onDelete}></Editor>
+      <AddForm></AddForm>
       <Footer></Footer>
     </section>
   );

@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import Button from "../button/button";
 
 const Welcome = () => {
   const history = useHistory();
@@ -9,8 +8,8 @@ const Welcome = () => {
   return (
     <section>
       <h1>Welcome</h1>
-      <Button name="signup" onClick={onSignup}></Button>
-      <Button name="login" onClick={goLogin}></Button>
+      <button onClick={onSignup}>signup</button>
+      <button onClick={goLogin}>login</button>
     </section>
   );
 };

@@ -1,9 +1,14 @@
-import React, { useRef } from "react";
-import Button from "../button/button";
-import ImageFileInput from "../image_file_input/image_file_input";
+import { Button } from "@material-ui/core";
+import React, { useRef, useState } from "react";
+import { useHistory } from "react-router";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import ImageInput from "../image_input/imageInput";
+import { boardState } from "../state/boardState";
 
-const AddForm = ({ onAdd }) => {
-  const idRef = useRef();
+const AddForm = () => {
+  const setBoard = useSetRecoilState(boardState);
+  const board = useRecoilState(boardState);
+  const history = useHistory();
   const themeRef = useRef();
   const titleRef = useRef();
   const contextRef = useRef();
@@ -13,7 +18,7 @@ const AddForm = ({ onAdd }) => {
     event.preventDefault();
     const date = new Date();
     const time = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}/${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-    const cards = {
+    const boards = {
       id: "id",
       theme: themeRef.current.value,
       title: titleRef.current.value || "",
@@ -21,7 +26,11 @@ const AddForm = ({ onAdd }) => {
       time: time,
     };
     formRef.current.reset();
-    onAdd(cards);
+    const update = [...board, boards];
+    console.log(update);
+    setBoard(update);
+    console.log(board);
+    history.push("/board");
   };
   return (
     <form ref={formRef}>
@@ -33,11 +42,9 @@ const AddForm = ({ onAdd }) => {
       </select>
       <textarea ref={contextRef} name="context" placeholder="context" />
       <div>
-        <ImageFileInput />
+        <ImageInput />
       </div>
-      <Button name="Add" onClick={onSubmit}>
-        Add
-      </Button>
+      <Button onClick={onSubmit}>Add</Button>
     </form>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import Button from "../button/button";
+
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import axios from "axios";
 import { useRef } from "react";
+import { Button } from "@material-ui/core";
 
 const Login = () => {
   const eRef = useRef();
@@ -14,7 +15,10 @@ const Login = () => {
     const id = eRef.current.value;
     const pw = pwRef.current.value;
     axios //
-      .post("/login", { id: { id }, pw: { pw } })
+      .post("http://3.38.95.244/", {
+        id: { id },
+        pw: { pw },
+      })
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   };

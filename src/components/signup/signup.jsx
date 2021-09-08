@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../signup/signup.module.css";
-import Button from "../button/button";
 import { useRef } from "react";
 
 const Signup = () => {
@@ -35,9 +34,11 @@ const Signup = () => {
     formdata.append("auth", auth);
     formdata.append("address", add);
     formdata.append("openKakaoAddress", kakaoAdd);
-    console.log(formdata);
+    for (let key of formdata.entries()) {
+      console.log(`${key}`);
+    }
     axios //
-      .post("/", formdata, {
+      .post("./signup", formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -48,6 +49,9 @@ const Signup = () => {
   return (
     <section>
       <h1>회원가입</h1>
+      <li>
+        <a href="/main/board">go</a>
+      </li>
       <form className={styles.form}>
         <input ref={emailRef} type="email" placeholder="email"></input>
         <input
@@ -78,7 +82,7 @@ const Signup = () => {
           accept=".jpg,.jpeg"
           onChange={onFile}
         ></input>
-        <Button name="signon" onClick={onSubmit}></Button>
+        <button onClick={onSubmit}>submit</button>
       </form>
     </section>
   );
